@@ -151,7 +151,7 @@ function GlobeWithTags({ visible, expanded, setExpanded, themeObj }) {
       if (animId) cancelAnimationFrame(animId);
       if (globe) globe.destroy();
     };
-  }, [visible]);
+  }, [visible]); // eslint-disable-line react-hooks/exhaustive-deps
 
   return (
     <div
