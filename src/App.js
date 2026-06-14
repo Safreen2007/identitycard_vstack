@@ -497,8 +497,8 @@ function VerticalDashboard({ card, onBack }) {
   },[navigate]);
 
   const handleDragEnd=useCallback((_,info)=>{
-    if(info.offset.y<-50) navigate(1);
-    else if(info.offset.y>50) navigate(-1);
+    if(info.offset.y<-30) navigate(1);
+    else if(info.offset.y>30) navigate(-1);
   },[navigate]);
 
   const getCardStyle=(index)=>{
@@ -522,9 +522,9 @@ function VerticalDashboard({ card, onBack }) {
 
       {/* Ambient */}
       <motion.div animate={{background:ambColors[currentIndex]}} transition={{duration:0.7}}
-        style={{position:"absolute",width:500,height:500,borderRadius:"50%",filter:"blur(100px)",top:-150,left:-120,opacity:0.13,pointerEvents:"none"}}/>
+        style={{position:"absolute",width:500,height:500,borderRadius:"50%",filter:"blur(80px)",top:-150,left:-120,opacity:0.10,pointerEvents:"none",willChange:"background"}}/>
       <motion.div animate={{background:ambColors[currentIndex]}} transition={{duration:0.7}}
-        style={{position:"absolute",width:380,height:380,borderRadius:"50%",filter:"blur(100px)",bottom:-100,right:-80,opacity:0.09,pointerEvents:"none"}}/>
+        style={{position:"absolute",width:380,height:380,borderRadius:"50%",filter:"blur(80px)",bottom:-100,right:-80,opacity:0.07,pointerEvents:"none",willChange:"background"}}/>
 
       {/* Back */}
       <button onClick={onBack}
@@ -572,12 +572,12 @@ function VerticalDashboard({ card, onBack }) {
           return (
             <motion.div key={dashCard.id}
               animate={{y:st.y,scale:st.scale,opacity:st.opacity,rotateX:st.rotateX,zIndex:st.zIndex}}
-              transition={{type:"spring",stiffness:300,damping:30,mass:1}}
+              transition={{type:"spring",stiffness:500,damping:40,mass:0.8}}
               drag={isCurrent?"y":false}
               dragConstraints={{top:0,bottom:0}}
-              dragElastic={0.18}
+              dragElastic={0.08}
               onDragEnd={handleDragEnd}
-              style={{position:"absolute",transformStyle:"preserve-3d",zIndex:st.zIndex,cursor:isCurrent?"grab":"default"}}>
+              style={{position:"absolute",transformStyle:"preserve-3d",zIndex:st.zIndex,cursor:isCurrent?"grab":"default",touchAction:"none"}}>
 
               <ShineBorder color={dashCard.shineColor || card.shineColor} borderRadius={28} borderWidth={1.5} duration={5}
                 style={{width:320,height:500}}>
@@ -585,11 +585,11 @@ function VerticalDashboard({ card, onBack }) {
                   boxShadow:isCurrent?"0 28px 70px -10px rgba(0,0,0,0.8),0 12px 28px -8px rgba(0,0,0,0.5)":"0 10px 30px -10px rgba(0,0,0,0.6)"}}>
 
                   {index===0 ? (
-                    <div style={{width:"100%",height:"100%",overflowY:"auto",overflowX:"hidden"}}>
+                    <div style={{width:"100%",height:"100%",overflow:"hidden"}}>
                       <IdentityCard themeObj={compTheme.identity}/>
                     </div>
                   ) : index===1 ? (
-                    <div style={{width:"100%",height:"100%",overflowY:"auto",overflowX:"hidden"}}>
+                    <div style={{width:"100%",height:"100%",overflow:"hidden"}}>
                       <AssignmentsCard visible={currentIndex===1} themeObj={compTheme.assignments}/>
                     </div>
                   ) : index===2 ? (
