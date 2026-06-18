@@ -433,7 +433,7 @@ function Card3D({ card, onNFC }) {
   const shadowX=(tilt.y/17)*18,shadowY=(-tilt.x/15)*14+22;
 
   return (
-    <div ref={sceneRef} style={{width:368,height:232,perspective:1100,margin:"0 auto",position:"relative"}}
+    <div ref={sceneRef} style={{width:260,height:400,perspective:1100,margin:"0 auto",position:"relative"}}
       onMouseMove={handleMouseMove} onMouseLeave={handleMouseLeave} onMouseEnter={()=>setHovering(true)}
       onTouchMove={handleTouchMove} onTouchEnd={handleMouseLeave}>
       <motion.div animate={{rotateX:tilt.x,rotateY:tilt.y,scale:hovering?1.025:1}}
@@ -445,11 +445,11 @@ function Card3D({ card, onNFC }) {
           <div style={{position:"absolute",inset:0,borderRadius:22,pointerEvents:"none",zIndex:3,background:`linear-gradient(130deg,${card.shimmer} 0%,rgba(255,255,255,0.05) 45%,transparent 70%)`}}/>
           <div style={{position:"absolute",inset:0,borderRadius:22,pointerEvents:"none",zIndex:4,background:`radial-gradient(ellipse 50% 38% at ${specX}% ${specY}%,rgba(255,255,255,0.34) 0%,rgba(255,255,255,0.09) 40%,transparent 70%)`,transition:"background 0.04s linear"}}/>
           <div style={{position:"absolute",top:0,left:0,right:0,height:1.5,borderRadius:"22px 22px 0 0",background:"linear-gradient(90deg,transparent 4%,rgba(255,255,255,0.9) 50%,transparent 96%)",zIndex:6}}/>
-          <div style={{position:"absolute",bottom:15,left:0,right:0,display:"flex",justifyContent:"center",zIndex:7,pointerEvents:"none"}}>
-            <span style={{fontFamily:"'IBM Plex Mono',monospace",fontSize:10,letterSpacing:"0.2em",fontWeight:500,color:card.numCol}}>AF05 &nbsp;0000 &nbsp;0005 &nbsp;5301</span>
+          <div style={{position:"absolute",bottom:18,left:0,right:0,display:"flex",justifyContent:"center",zIndex:7,pointerEvents:"none"}}>
+            <span style={{fontFamily:"'IBM Plex Mono',monospace",fontSize:9,letterSpacing:"0.18em",fontWeight:500,color:card.numCol}}>AF05 &nbsp;0000 &nbsp;0005 &nbsp;5301</span>
           </div>
-          <div onClick={onNFC} style={{position:"absolute",left:16,bottom:11,cursor:"pointer",zIndex:8,opacity:0.35,color:card.numCol}}>
-            <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
+          <div onClick={onNFC} style={{position:"absolute",right:14,bottom:14,cursor:"pointer",zIndex:8,opacity:0.35,color:card.numCol}}>
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
               <circle cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="1.4" opacity="0.4"/>
               <circle cx="12" cy="12" r="6.5" stroke="currentColor" strokeWidth="1.4" opacity="0.65"/>
               <circle cx="12" cy="12" r="3" stroke="currentColor" strokeWidth="1.4" opacity="0.85"/>
@@ -668,7 +668,7 @@ function CardScreen({ activeCard, setActiveCard, onNFC, onOpenDashboard }) {
         <div style={{fontSize:17,fontWeight:700,color:"rgba(255,255,255,0.72)",letterSpacing:"-0.01em",marginTop:5}}>Identity Card</div>
       </div>
 
-      <div style={{position:"relative",zIndex:1,width:"100%"}}>
+      <div style={{position:"relative",zIndex:1,width:"100%",marginTop:8,marginBottom:20}}>
         <Card3D card={card} onNFC={onNFC}/>
       </div>
 
